@@ -1,0 +1,52 @@
+
+Using the SNOPT mex Files              Philip Gill, UCSD June 14  2013
+=========================           Elizabeth Wong
+
+Run Matlab in the folder studentVersions
+
+ Typing
+  >> more on
+  >> help Contents
+from Matlab provides an overview of the package.
+
+ At the Matlab prompt, type
+  >> runAllExamples
+This script sets the appropriate matlab path.
+
+ The subdirectory ./examples contains various sample problems
+that demonstrate how to use the snOpt Matlab interfaces.  Read
+the in-line help information for each m-file for more
+information.
+
+
+  To run the individual m-files type
+
+  >> setpath  % if you haven't already called runAllExamples
+  >> addpath examples
+  >> addpath examples/snmain
+  >> snoptmain
+
+
+The are three different ways to call snopt:
+
+[x,F,INFO] = snopt(x,xlow,xupp,Flow,Fupp,'MySimplestFun');
+
+[x,F,INFO] = snopt(x,xlow,xupp,Flow,Fupp,'MyLessSimpleFun', ...
+                   A, iAfun, jAvar, iGfun, jGvar);
+
+[x,F,xmul,Fmul,INFO]= snsolve( x,xlow,xupp,xmul,xstate,    ...
+                               Flow,Fupp,Fmul,Fstate,      ...
+                               ObjAdd,ObjRow,A,iAfun,jAvar,...
+                               iGfun,jGvar,'MyGeneralFun');
+
+If you provide the derivatives of your problem functions be sure to check them
+first using the command:
+>> snseti('Verify level', 3);
+
+
+BOTTOM LINE:  The more information you give, the FASTER and MORE RELIABLE the solve.
+------------ (the  LONGER THE ARGUMENT LIST, the FASTER and MORE RELIABLE the solve)
+
+
+
+
